@@ -1,19 +1,15 @@
-# import webbrowser
 
 
 class Movie():
-    VALID_RATINGS = ["G", "PG", "PG-13", "R"]
 
     def __init__(self,
-                 movie_title,
-                 movie_storyline,
-                 poster_image,
+                 data,
                  trailer_youtube):
-        self.title = movie_title
-        self.storyline = movie_storyline
-        self.poster_image_url = poster_image
-        self.trailer_youtube_url = trailer_youtube
-        # self.rating = rating
 
-    # def show_trailer(self):
-    #     webbrowser.open(self.trailer_youtube_url)
+        # Create variables for each Class instance
+        self.title = data["Title"]
+        self.storyline = data["Plot"]
+        self.poster_image_url = data["Poster"]
+        self.trailer_youtube_url = trailer_youtube
+        self.rating = data["Rated"]
+        self.review = data["imdbRating"]

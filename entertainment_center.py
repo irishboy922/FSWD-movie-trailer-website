@@ -1,36 +1,43 @@
 # Import the media file to access the Movie class
 import media
+import requests
 # Import fresh_tomatoes.py file to access open_movies_page function
 import fresh_tomatoes
 
-toy_story = media.Movie("Toy Story",
-                        "test",
-                        "https://en.wikipedia.org/wiki/File:Toy_Story.jpg",
+# Data for all the movies provided by the OMDb API
+# Link: https://www.omdbapi.com/
+# License: CC BY-NC 4.0.
+
+'''
+Function get_data is used to get data from the OMDb API and
+return a JSON object.
+It takes in one @param: the OMDb API request link
+'''
+
+
+def get_data(json_link):
+        # request data from API
+    data_request = requests.get(json_link)
+    # Trun the data_request into a JSON object
+    data = data_request.json()
+    # return the data from the collected JSON
+    return data
+
+
+toy_story = media.Movie(get_data("http://www.omdbapi.com/?t=toy+story&y=&plot=short&r=json"),
                         "https://www.youtube.com/watch?v=4KPTXpQehio")
-toy_story.rating = toy_story.VALID_RATINGS[0]
-
-avatar = media.Movie("Avatar",
-        "A marine on an alien planet",
-        "https://en.wikipedia.org/wiki/File:Avatar-Teaser-Poster.jpg",  # NOQA
-        "https://www.youtube.com/watch?v=5PSNL1qE6VY")
-avatar.rating = avatar.VALID_RATINGS[1]
+#
 
 
-gladiator = media.Movie("Gladiator",
-                        "When a Roman general is betrayed and his family "
-                        "murdered by an emperor's corrupt son, he comes to"
-                        " Rome as a gladiator to seek revenge.",
-                        "https://en.wikipedia.org/wiki/File:Gladiator_ver1.jpg",  # NOQA
+avatar = media.Movie(get_data("http://www.omdbapi.com/?t=avatar&y=&plot=short&r=json"),
+                     "https://www.youtube.com/watch?v=4KPTXpQehio")
+
+
+gladiator = media.Movie(get_data("http://www.omdbapi.com/?t=gladiator&y=&plot=short&r=json"),
                         "https://www.youtube.com/watch?v=Q-b7B8tOAQU")
-gladiator.rating = gladiator.VALID_RATINGS[2]
 
-test = media.Movie("Gladiator",
-                        "Maximus is then relegated to fighting to the death"
-                        " in the gladiator arenas",
-                        "https://en.wikipedia.org/wiki/File:Gladiator_ver1.jpg",  # NOQA
-                        "https://www.youtube.com/watch?v=Q-b7B8tOAQU")
-test.rating = test.VALID_RATINGS[2]
 
-movies = [toy_story, avatar, gladiator, test]
+movies = [toy_story, avatar, gladiator]
 # print(avatar.rating, toy_story.rating, gladiator.rating)
+
 fresh_tomatoes.open_movies_page(movies)

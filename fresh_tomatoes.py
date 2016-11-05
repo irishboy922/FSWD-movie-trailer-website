@@ -6,7 +6,7 @@ import re
 main_page_head = '''
 <head>
     <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
+    <title>Movie Trailers</title>
 
     <!-- Bootstrap 3 -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -15,35 +15,89 @@ main_page_head = '''
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <style type="text/css" media="screen">
         body {
+            background-color: #fff;
             padding-top: 80px;
+            font-family: sans-serif;
         }
+
+        .navbar {
+            background-color: #4130E6;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 2.3rem;
+        }
+
+        .navbar-brand:hover {
+            color: rgba(250, 250, 250, 0.7);
+            text-shadow: none;
+        }
+
+        .instruction-text {
+            color: #efefef;
+            font-weight: 400;
+        }
+
         #trailer .modal-dialog {
             margin-top: 200px;
             width: 640px;
             height: 480px;
         }
+
         .hanging-close {
             position: absolute;
             top: -12px;
             right: -12px;
             z-index: 9001;
         }
+
         #trailer-video {
             width: 100%;
             height: 100%;
         }
+
         .movie-tile {
             margin-bottom: 20px;
-            padding-top: 20px;
-        }
-        .movie-tile:hover {
-            background-color: #EEE;
+            padding: 20px 0 10px;
             cursor: pointer;
         }
+
+        .image-container {
+            position: relative;
+            width: 220px;
+            height: 342px;
+            margin: 0 auto;
+        }
+
+        .movie-tile:hover .hover-overlay {
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .hover-overlay {
+            display: none;
+            position: absolute;
+            -ms-flex-direction: column;
+                flex-direction: column;
+            -ms-flex-pack: center;
+                justify-content: center;
+            -ms-flex-align: center;
+                align-items: center;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 342px;
+            color: #fff;
+            background-color: rgba(72, 53, 255, 0.9);
+            padding: 15px;
+        }
+
         .scale-media {
             padding-bottom: 56.25%;
             position: relative;
         }
+
         .scale-media iframe {
             border: none;
             height: 100%;
@@ -53,6 +107,7 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -102,16 +157,19 @@ main_page_content = '''
 
     <!-- Main Page Content -->
     <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+            <a class="navbar-brand" href="#">PE Movie Trailers</a>
           </div>
         </div>
       </div>
     </div>
+    <div class="text-center">
+        <p class="instruction-text">Click on the movie poster image to view the trailer.</p>
+    </div>
     <div class="container">
-      {movie_tiles}
+        {movie_tiles}
     </div>
   </body>
 </html>
@@ -119,9 +177,16 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+<div class="col-lg-4 col-md-6 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+    <div class="image-container">
+        <img class="movie-img" src="{poster_image_url}" width="100%" height="100%">
+        <span class="hover-overlay text-center">
+            <p>{movie_storyline}</p>
+            <h5>{movie_review} / 10</h5>
+            <h4>{movie_rating}</h4>
+        </span>
+    </div>
+    <h3 class="text-uppercase">{movie_title}</h3>
 </div>
 '''
 
@@ -141,6 +206,9 @@ def create_movie_tiles_content(movies):
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
             movie_title=movie.title,
+            movie_rating=movie.rating,
+            movie_review=movie.review,
+            movie_storyline=movie.storyline,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id
         )
