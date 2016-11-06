@@ -13,30 +13,41 @@ main_page_head = '''
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <style type="text/css" media="screen">
+    <style>
         body {
+            box-sizing: border-box;
             background-color: #fff;
-            padding-top: 80px;
             font-family: sans-serif;
         }
 
-        .navbar {
-            background-color: #4130E6;
-        }
-
-        .navbar-brand {
+        h2 {
             color: #fff;
-            font-size: 2.3rem;
+            font-weight: 200;
+            margin-left: 20px;
         }
 
-        .navbar-brand:hover {
-            color: rgba(250, 250, 250, 0.7);
-            text-shadow: none;
+        .name-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 80px;
+            width: 100%;
+            text-align: left;
+            background: #3E57FF;
+            box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .instruction-wrapper {
+            margin: 130px 0 30px;
         }
 
         .instruction-text {
-            color: #efefef;
+            color: #3E57FF;
             font-weight: 400;
+            border: 1px solid #3E57FF;
+            background-color: rgba(62, 87, 255, 0.2);
+            padding: 10px 30px;
         }
 
         #trailer .modal-dialog {
@@ -63,6 +74,13 @@ main_page_head = '''
             cursor: pointer;
         }
 
+        .movie-title {
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-size: 2rem;
+            margin-top: 5px;
+        }
+
         .image-container {
             position: relative;
             width: 220px;
@@ -79,18 +97,36 @@ main_page_head = '''
             display: none;
             position: absolute;
             -ms-flex-direction: column;
-                flex-direction: column;
+            flex-direction: column;
             -ms-flex-pack: center;
-                justify-content: center;
+            justify-content: center;
             -ms-flex-align: center;
-                align-items: center;
+            align-items: center;
             top: 0;
             left: 0;
             width: 220px;
             height: 342px;
             color: #fff;
-            background-color: rgba(72, 53, 255, 0.9);
-            padding: 15px;
+            background-color: rgba(62, 87, 255, 0.93);
+            padding: 25px;
+        }
+
+        .rating {
+            text-align: left;
+            font-weight: 200;
+        }
+
+        .storyline {
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 300;
+            padding: 10px 0;
+        }
+
+        .review {
+            font-weight: 200;
+            padding: 5px 10px;
+            border: 1px solid #fff;
         }
 
         .scale-media {
@@ -105,9 +141,8 @@ main_page_head = '''
             width: 100%;
             left: 0;
             top: 0;
-            background-color: white;
+            background-color: #fff;
         }
-
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -156,17 +191,11 @@ main_page_content = '''
     </div>
 
     <!-- Main Page Content -->
-    <div class="container">
-      <div class="navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">PE Movie Trailers</a>
-          </div>
-        </div>
-      </div>
+    <div class="container name-header">
+        <h2>Patrick's Top Movie Picks</h2>
     </div>
-    <div class="text-center">
-        <p class="instruction-text">Click on the movie poster image to view the trailer.</p>
+    <div class="instruction-wrapper text-center">
+        <span class="instruction-text">Click on the movie poster image to view the trailer.</span>
     </div>
     <div class="container">
         {movie_tiles}
@@ -177,16 +206,16 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-lg-4 col-md-6 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="col-lg-3 col-sm-4 col-xs-12 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <div class="image-container">
         <img class="movie-img" src="{poster_image_url}" width="100%" height="100%">
         <span class="hover-overlay text-center">
-            <p>{movie_storyline}</p>
-            <h5>{movie_review} / 10</h5>
-            <h4>{movie_rating}</h4>
+            <h3 class="movie-title text-uppercase">{movie_title}</h3>
+            <h4 class="rating">{movie_rating}</h4>
+            <p class="storyline">{movie_storyline}</p>
+            <span class="review">{movie_review} / 10</span>
         </span>
     </div>
-    <h3 class="text-uppercase">{movie_title}</h3>
 </div>
 '''
 
