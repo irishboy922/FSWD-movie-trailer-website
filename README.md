@@ -23,7 +23,7 @@ $ python entertainment_center.py
 Upon executing the above command, the generated html file should automatically open in your default browser. Please note that since there are multiple synchronous api requests occuring to collect the data for the movies there may be a few second delay before the site opens in the browser. Once the site is loaded it should run smoothly.
 
 ## How to Use the Site
-Using the site is pretty straight forward. Once the site has been generated and opened in your browser, a list of video posters will be displayed. If you _hover_ over a video poster, detailed information, such as the title, rating, story plot, and IMDB review will appear. If you _click_ on the video poster, a movie trailer will appear and autoplay.
+Using the site is pretty straight forward. Once the site has been generated and opened in your browser, a list of movie posters will be displayed. If you _hover_ over a movie poster, detailed information, such as the title, rating, story plot, and IMDB review will appear. If you _click_ on the movie poster, a movie trailer will appear and autoplay.
 
 Enjoy!
 
