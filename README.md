@@ -1,6 +1,6 @@
 # Udacity's Full Stack Web Developer (FSWD) Movie Trailer Website Project
 
-## Project Description:
+## Project Description
 This project required us to write object-oriented Python server-side code to store a list of our favorite movies, including box art imagery and a movie trailer URL. We then needed to use our code to generate a static web page allowing visitors to browse the movies and watch the trailers.
 
 Modification I made to this project included changing the site design, the use of a 3rd Party API to get the information used for the movies, and the inclusion of extra information about each movie, such as movie rating, IMDB review score, and a short summary of the movie's plot.
