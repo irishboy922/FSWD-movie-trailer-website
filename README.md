@@ -13,6 +13,7 @@ In order to download this project to your computer you will need to clone it to 
 ```
 $ git clone http://github.com/irishboy922/FSWD-movie-trailer-website.git
 ```
+You can also click on the ![alt text](github-download-btn.png "github button") button to either download a zip version or copy the clone link.
 
 ## How to Run the Application and View the Website
 Once you have downloaded the files on your local machine, make sure you have ` cd ` into the folder containing the project files and run the following command into your terminal:
@@ -22,5 +23,5 @@ $ python entertainment_center.py
 Upon executing the above command, the generated html file should automatically open in your default browser. Please note that since there are multiple synchronous api requests occuring to collect the data for the movies there may be a few second delay before the site opens in the browser. Once the site is loaded it should run smoothly.
 
 ## License
-[MIT License](#)
+[MIT License](https://opensource.org/licenses/MIT)
 
