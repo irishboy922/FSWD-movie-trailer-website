@@ -16,7 +16,15 @@ $ git clone http://github.com/irishboy922/FSWD-movie-trailer-website.git
 You can also click on the ![alt text](github-download-btn.png "github button") button to either download a zip version or copy the clone link.
 
 ## How to Run the Application and View the Website
-Once you have downloaded the files on your local machine, make sure you have switched (` cd `) to the folder containing the project files and run the following command into your terminal:
+Once you have downloaded the files on your local machine, you will need to make sure you have the [Requests](http://docs.python-requests.org/en/master/) Python library installed on your machine. To check if you have it installed, open your terminal and type ` $ python -c "import requests" `. If you get back this ` ImportError: No module named requests ` error message then you need to install it.
+
+To install the Requests library, type the following command in your terminal:
+```
+$ pip install requests
+```
+If you do not have PIP installed yet, please follow [this](http://docs.python-guide.org/en/latest/starting/installation/) tutorial. Note that if you have Python 2.7.9 (and up) or Python 3.4 (and up) installed from python.org, you should already have pip and setuptools installed. Though they may need to be upgraded.
+
+Once you have the Requests library installed make sure you have switched (` cd `) to the folder containing the project files and run the following command into your terminal:
 ```
 $ python entertainment_center.py
 ```
